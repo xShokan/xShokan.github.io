@@ -13,10 +13,12 @@ categories: jekyll update
 ```mermaid
 classDiagram
 A-->B1
+B<|--C
 ```
 
 ```plantuml
 Bob -> Alice : hello world
+Bob -> Alice1 : hello world
 ```
 
 |--|--|--|--|--|--|--|--|
