@@ -6,7 +6,7 @@ sidebar:
   nav: docs
 ---
 
-## 设置GitHub Pages
+## GitHub Pages
 - 1
 - 2
 - 3
