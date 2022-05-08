@@ -1,12 +1,12 @@
 ---
 
-title:  "Test"
+title:  "Installation"
 categories: jekyll update
 sidebar:
   nav: docs
 ---
 
-## Test
+## 设置GitHub Pages
 - 1
 - 2
 - 3

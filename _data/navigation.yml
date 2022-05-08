@@ -1,0 +1,12 @@
+# main links
+main:
+  - title: "LearnNotes"
+    url: /jekyll/update/Test/
+
+
+# documentation links
+docs:
+  - title: Jekyll
+    children:
+      - title: "Installation"
+        url: /jekyll/update/Jekyll-Installation/
