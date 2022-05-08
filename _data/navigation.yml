@@ -10,3 +10,7 @@ docs:
     children:
       - title: "Installation"
         url: /jekyll/update/Jekyll-Installation/
+  - title: 设计模式
+      children:
+          - title: "符号"
+            url: /jekyll/update/设计模式/符号/

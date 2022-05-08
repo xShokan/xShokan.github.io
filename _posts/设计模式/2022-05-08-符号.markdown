@@ -1,6 +1,6 @@
 ---
 
-title:  "Installation"
+title:  "符号"
 categories: jekyll update 设计模式
 sidebar:
   nav: docs
