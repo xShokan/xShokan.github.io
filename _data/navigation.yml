@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "LearnNotes"
+  - title: "Learning Notes"
     url: /jekyll/update/Test/
 
 
@@ -14,3 +14,7 @@ docs:
     children:
       - title: "符号"
         url: /jekyll/update/设计模式/符号/
+      - title: "原则"
+        url: /jekyll/update/设计模式/原则/
+      - title: "原型 (Prototype)"
+        url: /jekyll/update/设计模式/原型 (Prototype)/
