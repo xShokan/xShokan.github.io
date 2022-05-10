@@ -111,6 +111,7 @@ AddBehaviorB
 ```
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 %% 对象链
 flowchart LR
 Target --> ConcreteDecoratorA --> ConcreteDecoratorB

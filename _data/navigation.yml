@@ -16,5 +16,11 @@ docs:
         url: /jekyll/update/设计模式/符号/
       - title: "原则"
         url: /jekyll/update/设计模式/原则/
+      - title: "单例 (Singleton)"
+        url: /jekyll/update/设计模式/单例 (Singleton)/
       - title: "原型 (Prototype)"
-        url: /jekyll/update/设计模式/原型 (Prototype)/
+          url: /jekyll/update/设计模式/原型 (Prototype)/
+      - title: "策略 (Strategy)"
+          url: /jekyll/update/设计模式/策略 (Strategy)/
+      - title: "装饰 (Decorator)"
+          url: /jekyll/update/设计模式/装饰 (Decorator)/
