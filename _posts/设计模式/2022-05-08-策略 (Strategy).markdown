@@ -1,0 +1,110 @@
+---
+
+title:  "策略 (Strategy)"
+categories: jekyll update 设计模式
+sidebar:
+  nav: docs
+---
+某个类的行为可以运行时动态变化
+
+- BaseStrategy：策略基类
+  - Algorithm1、Algorithm2：策略行为
+- Strategy1、Strategy2、Strategy3：具体策略
+- Context：使用策略类
+  - SetStrategy：设置策略实例
+  - ExecStrategyAlgo1、ExecStrategyAlgo2：执行策略行为
+
+```mermaid
+%%{init: {'theme': 'dark'}}%%
+classDiagram
+class BaseStrategy{
+  +Algorithm1()
+	+Algorithm2()
+}
+class Strategy1{
+  +Algorithm1()
+	+Algorithm2()
+}
+class Strategy2{
+  +Algorithm1()
+	+Algorithm2()
+}
+class Strategy3{
+  +Algorithm1()
+	+Algorithm2()
+}
+class Context{
+	-BaseStrategy Strategy
+	+SetStrategy()
+	+ExecStrategyAlgo1()
+	+ExecStrategyAlgo2()
+}
+
+BaseStrategy <|-- Strategy1 : Inheritance
+BaseStrategy <|-- Strategy2 : Inheritance
+BaseStrategy <|-- Strategy3 : Inheritance
+BaseStrategy <--o Context : Aggregation
+```
+
+```c++
+#include <iostream>
+
+class BaseStrategy {
+public:
+    virtual void Algorithm1(){}
+    virtual void Algorithm2(){}
+};
+
+class Strategy1 : public BaseStrategy{
+public:
+    virtual void Algorithm1() override{
+        std::cout << "Strategy1 Algorithm1" << std::endl;
+    }
+    virtual void Algorithm2() override{
+        std::cout << "Strategy1 Algorithm2" << std::endl;
+    }
+};
+
+class Strategy2 : public BaseStrategy{
+public:
+    virtual void Algorithm1() override{
+        std::cout << "Strategy2 Algorithm1" << std::endl;
+    }
+    virtual void Algorithm2() override{
+        std::cout << "Strategy2 Algorithm2" << std::endl;
+    }
+};
+
+class Context{
+private:
+    BaseStrategy* Strategy;
+public:
+    void SetStrategy(BaseStrategy* TempStrategy){
+        Strategy = TempStrategy;
+    }
+    void ExecStrategyAlgo1(){
+        Strategy->Algorithm1();
+    }
+    void ExecStrategyAlgo2(){
+        Strategy->Algorithm2();
+    }
+};
+
+int main(){
+    Context* ContextObj = new Context;
+    ContextObj->SetStrategy(new Strategy1());
+    ContextObj->ExecStrategyAlgo1();
+    ContextObj->ExecStrategyAlgo2();
+    ContextObj->SetStrategy(new Strategy2());
+    ContextObj->ExecStrategyAlgo1();
+    ContextObj->ExecStrategyAlgo2();
+}
+```
+
+```c++
+// Output
+Strategy1 Algorithm1
+Strategy1 Algorithm2
+Strategy2 Algorithm1
+Strategy2 Algorithm2
+```

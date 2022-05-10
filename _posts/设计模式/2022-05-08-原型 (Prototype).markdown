@@ -12,6 +12,7 @@ sidebar:
 - Client：调用clone()类
 
 ```mermaid
+%%{init: {'theme': 'dark'}}%%
 classDiagram
 direction TB
 class Prototype{
