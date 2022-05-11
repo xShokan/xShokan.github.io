@@ -6,17 +6,19 @@ sidebar:
 ---
 <html>
 <body>
-<canvas id="myCanvas" width="200" height="100"
-        style="border:1px solid #c3c3c3;">
+<canvas id="myCanvas" width="500" height="500"
+        style="border:1px solid #252a34;">
     Your browser does not support the canvas element.
 </canvas>
 
-<script src="http://xshokan.github.io/assets/js/function.js">
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.fillStyle = "#FF0000";
+<script src="https://xshokan.github.io/assets/js/function.js"></script>
+<script>
+    let canvas = document.getElementById("myCanvas");
+    let ctx = canvas.getContext("2d");
+    let color = "#c4c4c4"
+    drawArrow(ctx, 150, 100, 400,100,30,30,10,color);
+    ctx.fillStyle = color;
     ctx.fillRect(0,0,150,75);
-    drawArrow(ctx, canvas.width / 2, canvas.height / 2, canvas.width / 2 + 150, canvas.height / 2,30,30,4,'#f36');
 </script>
 
 </body>
