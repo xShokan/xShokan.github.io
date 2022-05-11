@@ -24,3 +24,9 @@ docs:
         url: /jekyll/update/设计模式/策略 (Strategy)/
       - title: "装饰 (Decorator)"
         url: /jekyll/update/设计模式/装饰 (Decorator)/
+      - title: "TestHtml"
+        url: /jekyll/update/设计模式/TestHtml/
+  - title: Lua
+    children:
+        - title: "C API"
+          url: /jekyll/update/Lua/C_API/

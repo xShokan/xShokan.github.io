@@ -1,5 +1,4 @@
 ---
-
 title:  "原型 (Prototype)"
 categories: jekyll update 设计模式
 sidebar:

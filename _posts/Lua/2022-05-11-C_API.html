@@ -1,0 +1,23 @@
+---
+title:  "C API"
+categories: jekyll update Lua
+sidebar:
+    nav: docs
+---
+<html>
+<body>
+<canvas id="myCanvas" width="200" height="100"
+        style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+
+<script src="http://xshokan.github.io/assets/js/function.js">
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(0,0,150,75);
+    drawArrow(ctx, canvas.width / 2, canvas.height / 2, canvas.width / 2 + 150, canvas.height / 2,30,30,4,'#f36');
+</script>
+
+</body>
+</html>
