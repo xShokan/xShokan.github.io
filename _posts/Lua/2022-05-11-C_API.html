@@ -12,15 +12,16 @@ sidebar:
 
 <ul>
     <li>
-        <pre>lua_gettop 返回栈中元素个数</pre>
+        <pre><span style="color:red;">lua_gettop</span> 返回栈中元素个数</pre>
         <code>int lua_gettop (lua_state *L);</code>
     </li>
     <li>
-        <pre>lua_toxxx 返回栈中对应位置idx的元素</pre>
+        <pre><span style="color:red;">lua_toxxx</span> 返回栈中对应位置idx的元素</pre>
         <code>int lua_toxxx (lua_state *L, int idx);</code>
     </li>
     <li>
-        <pre style="word-wrap: break-word;white-space:pre-wrap;">lua_next返回将栈顶元素作为key查找下一对key-value入栈，入栈前会将栈顶元素弹出。如果栈顶元素为nil，则将第一对key-value入栈</pre>
+        <pre style="word-wrap: break-word;white-space:pre-wrap;"><span style="color:red;">lua_next</span> 返回将栈顶元素作为key查找下一对key-value入栈，入栈前会将栈顶元素弹出。如果栈顶元素为nil，则将第一对key-value入栈
+        </pre>
         <code>int lua_next (lua_state *L, int idx);</code>
         <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-05-12T17:56:57.329Z\&quot; agent=\&quot;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36\&quot; etag=\&quot;j31OglzG1yWP7pTDgDUD\&quot; version=\&quot;18.0.3\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;HJl-9YdEfU1DyVbxtj3X\&quot; name=\&quot;Page-1\&quot;&gt;7VzRbqM4FP2aPHYEGJL2cZJ0Z1abGc02lWb3aeWCA546ODJOQ/r1a4MJoQ4tGaWAaqSqwhfjwD3n+pDTq47AbJ1+YXATfaMBIiPHCtIRmI8cZzK+Fr9lYJ8H3ImXB0KGgzxkl4ElfkYqaKnoFgcoqUzklBKON9WgT+MY+bwSg4zRXXXaipLqp25giLTA0odEj/7EAY/y6LUzKeNfEQ6j4pPt8U1+Zg2LyepJkggGdHcUArcjMGOU8vxonc4Qkbkr8pJf90fN2cONMRTzJheQ+7+87zz9ky/Az8/P9+nf7uz+ynPyZZ4g2aonVnfL90UKGN3GAZKrWCMw3UWYo+UG+vLsTmAuYhFfEzGyxaFaDjGO0tobtQ+PL2iD6BpxthdTiguAypiijHOjxrsSAFDMiY6SDywVhAr08LB2mRdxoFJzRprGWpaWHPqPWqoExht5yOGDDE0TDhlXpAYye4KmHOIYMZUunxICNwnOpmf59SNMggXc0y0vFipG0xVOUXCXc1peLei9EIsl6tKVWHypbuZSWHhVLICtY2FbJ7CwnffCYvI2Yysw3Mmim0aU4WeZfKKSdQxNNt7hNYGxqGYYvAhNabZ7yRCnG3VE0IqrwwfKOV2rAVM5sE6iGzC6uYcsRMWUFSZkRgmVhIhpLEmzoTjmWda8qfgReZxZn7yRJ55sJsZ2ORY/cjrjMxonnAliyWURTPgOJbwpA+oZr9OioEFDFoD3IsG1RgK7lgXiWTmG5E7IA4zDrC6PNqxT+5kSE1jidgKm86hABQgrku3/EQ4CFBdAI3b7hHK8G9dsfV3oiB1B5IDzEFKLlYk7ezVIxPPFkIsSEhqSaLAf7vP3mXCjMSHGpN9cgASHAv95PneaiA/EcbjIrxzXkOXixEirMB4hO5lckidNVmuBJ4VwDbrRoW6Mu9YN29ZYUE+DXmwWl90LbOs0Ph9dJWz9e06OUq+xb1ko6shhmlKAQSk6V4oT3/lbVgpXYwHo925x4c0AGKoUnob7D8jgut/Yt60UNeQwTSl0L8oQXxC4vfMFbd0TGmT78rJt19gJfXEGbd0QMt4azEvDPC13dM8nO+w5IdoW8xp2GCbmjm4NDfrRun507hAWqJvqENa9+H14rdBdn0e0H5SiCTdMUwrdGhqUonWl6NwhdHSnyCiHMC8DA5VC7wYb/pbUlBymScVEYwUKQlS4cWLfjGhIY0huy+i02nBZzlnQDHFJml+I872SDrjltEopAQ3b/6Ouzwb/yoHYsdVwnh6fnBfSkt+rvMFasIsXIrplPnpt81a55oXSnPtOwRCBHD9V7+Tye7huGi628L8YpfwkcAv4gEg12UVh+Ug6NiIgywX7kHxWJ9aimnJcUYKfj2q6qrLz1+qtuiGMDk3Fb9fh690/V9YnZ2KpYlTCeqXeZhojoFb/IR/naApdrRLE36WqdI/PEN/9ZT+u63XuuwPdZBvehi//Npxzvr++O9Dts55/eX5/3x0Y2m0FdA9t8FIacsOwF2QwNFv1QD06d92BbqkZ5boDQ7utgO6hDV5KU3KYJhW67zZIRetS0bntDvSmO6Nsd1DTOP3hpUK36obG3KbkME0qjDUIXzbm9sAgdAeDsA3dBj03CN3BIKwpDfO03NUNwuyw59/5WxbzOnYYJubuYBH2QD86twhdwy1C11CL0NUtwke07zn0bSvF4BBmaRgcwh4oRecOoWu4Q+ga6hC6ukM4/DGpKTlMk4objRVmNOYWDRdvNubWvVO005jr6abhx2rMdWtEtKeNuWJY/qvifHr5/57B7f8=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
         <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
