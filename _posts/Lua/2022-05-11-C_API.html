@@ -5,21 +5,29 @@ sidebar:
     nav: docs
 ---
 <html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <body>
-<canvas id="myCanvas" width="500" height="500"
-        style="border:1px solid #252a34;">
-    Your browser does not support the canvas element.
-</canvas>
-
 <script src="https://xshokan.github.io/assets/js/function.js"></script>
-<script>
-    let canvas = document.getElementById("myCanvas");
-    let ctx = canvas.getContext("2d");
-    let color = "#c4c4c4"
-    drawArrow(ctx, 150, 100, 400,100,30,30,10,color);
-    ctx.fillStyle = color;
-    ctx.fillRect(0,0,150,75);
-</script>
+<h2>Lua接口</h2>
+
+<ul>
+    <li>
+        <pre>lua_gettop 返回栈中元素个数</pre>
+        <code>int lua_gettop (lua_State *L);</code>
+    </li>
+    <li>
+        <pre>lua_toxxx 返回栈中对应位置idx的元素</pre>
+        <code>int lua_toxxx (lua_State *L, int idx);</code>
+    </li>
+    <li>
+        <pre>lua_next返回将栈顶元素作为key查找下一对key-value入栈，入栈前会将栈顶元素弹出。如果栈顶元素为nil，则将第一对key-value入栈</pre>
+        <code>int lua_next (lua_State *L, int idx);</code>
+        <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-05-12T17:39:20.573Z\&quot; agent=\&quot;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36\&quot; etag=\&quot;M_EdIir8B0Tq0tbaL6dV\&quot; version=\&quot;18.0.3\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;HJl-9YdEfU1DyVbxtj3X\&quot; name=\&quot;Page-1\&quot;&gt;7VzRbuI4FP0aHjsicYD2cYDu7miY0WypNLtPK5eYxFsTI8eU0K9fO7YJqZtOWNEkqiNVVXzjGMfnXB9zetUBmG2y3xncxt9oiMjAH4bZAMwHvj8ZX4vfMnBQgWAyUoGI4VCFvCKwxM9IB4c6usMhSksdOaWE4205uKJJgla8FIOM0X2525qS8qduYYSswHIFiR39iUMeq+i1PynifyAcxeaTvfGNurOBprN+kzSGId2fhMDtAMwYpVxdbbIZInLtzLqo536ruHucGEMJr/MAuf86+s6zL3wBfn5+vs/+DGb3V2M1yhMkO/3CSw5Xj3rG/GCWQUx+Ky85fJChacoh4xotMBQBsf4c4gQxEfDyNiFwm+K8+zzvEWMSLuCB7rgZyLSma5yh8E6BJZ8WuC3EYKl+dC0GX+rJyNt60ohxlFWuhndcY8FNRDeIs4PoYh4YaVg0L4Eh3L5A2RvqWHyKsMETamZFx7GLxRcXev3PwGJiYfE2DHeSTdOYMvwsF5/oxTqFJm/v8YbARNAUhi9CU5qnpQxxutVXBK25vnygnNONbjC9BsNX0Q0Z3d5DFiHTZY0JmVFCJSESmkjSbClOeL5qo6n4Ees4G34aDUbizWai7RVt8SO7Mz6jScqZIJYcFsGU71HK6zKgmvE2LQwNarIAvBcJri0SeJUsEO/KMSR3Yt+DSZTnZcw3RCfJPsYcLbdwJbvuxeasslTukrDA7RWYzqMCFSCsSb6xxTgMUWKARuz2CSm8a+dsdV7YiJ1A5IPzENKDFQt39miQiPdLIBcptEvC1IL9OM//z4QbiwkJJt3mAiQ4EvjPVd9pKj4QJ9FCPTmuIMvFiZGVYTxBdjK5JE/qjNYAT4xw9brRom6M29YNz7NYUE2DTmwWl90LvOHr+Hx0lfB8C3eFUqexb1goqsjhmlKAXilaV4qb1pUisFgAur1bXHgzAI4qxcjC/QdkcNNt7JtWigpyuKYUthfliC8Igs75gp7tCfWyfXnZ9irshK44g55tCDlvDarUcE/LfdvzyS87ToimxbyCHY6JuW9bQ71+NK4frTuEBnVXHcKqg9+H1wrb9XlEh14p6nDDNaWwraFeKRpXitYdQt92ipxyCFUaOKgUdjVY/7ekuuRwTSomFitQGCHjxol9M6YRTSC5LaJTJqeDjAQUfRY0R1yS5l/E+UFLB9xxWqaUgIYd/tLP542/ZUPs2Lo5z05vzo20qLnKCVaCbQ5EdMdW6K3NW681N0pz7pmCIQI5firP5PJ7uG0aLnbwnwRl/FXgFvABkfJim8RaIenYiIBMF7yC5LO+sRHZpHBFKX4+yemyys7fyrfyhjA4Vsv+Og/frv65Gn7yJ0OdjFpYr/RppjYCevQf8nVOutD1OkX8XbLK9vgc8d1f1uMGo9Z9d2CbbP1p+PKnYcX57vruwLbPOv7l+f19d+BotRWwPbTeS6nJDccOyKAvtuqAerTuugPbUnPKdQeOVlsB20PrvZS65HBNKmzfrZeKxqWiddsd2EV3TtnuoKJw+sNLhW3V9YW5dcnhmlQ4axC+LMztgEEY9AZhE7oNOm4QBr1BWJEa7ml5YBuE+WXHv/M3LOZV7HBMzIPeIuyAfrRuEQaOW4SBoxZhYFuEj+jQceibVoreIcyXoXcIO6AUrTuEgeMOYeCoQxjYDmH/x6S65HBNKm4sVrhRmGsKLn5ZmFt1pmimMHdkm4YfqzA3qBDRjhbmimbxP3hV9+IfGYPb/wA=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+    </li>
+
+</ul>
+
 
 </body>
 </html>
