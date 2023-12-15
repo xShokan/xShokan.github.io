@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+--><html lang="en" class="no-js">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>C API - Shokan Blog</title>
+<meta name="description" content="Lua接口">
+
+
+  <meta name="author" content="Shokan">
+  
+  <meta property="article:author" content="Shokan">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Shokan Blog">
+<meta property="og:title" content="C API">
+<meta property="og:url" content="/jekyll/update/lua/C_API/">
+
+
+  <meta property="og:description" content="Lua接口">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-05-11T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="/jekyll/update/lua/C_API/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Shokan",
+      "url": "/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Shokan Blog Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Shokan Blog
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/jekyll/update/Test/">Learning Notes</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Shokan</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>你是一个一个一个程序员啊</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">TaiZhou</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Jekyll</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/jekyll/update/Jekyll-Installation/">Installation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">设计模式</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AC%A6%E5%8F%B7/">符号</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%88%99/">原则</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%20(Singleton)/">单例 (Singleton)</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%20(Prototype)/">原型 (Prototype)</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%20(Strategy)/">策略 (Strategy)</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%20(Decorator)/">装饰 (Decorator)</a></li>
+          
+            <li><a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/TestHtml/">TestHtml</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">Lua</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/jekyll/update/Lua/C_API/">C API</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="C API">
+    <meta itemprop="description" content="Lua接口">
+    <meta itemprop="datePublished" content="2022-05-11T00:00:00+00:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">C API
+</h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<script src="https://xshokan.github.io/assets/js/function.js"></script>
+<h2>Lua接口</h2>
+
+<ul>
+    <li>
+        <pre><span style="color:red;">lua_gettop</span> 返回栈中元素个数</pre>
+        <code>int lua_gettop (lua_state *L);</code>
+    </li>
+    <li>
+        <pre><span style="color:red;">lua_toxxx</span> 返回栈中对应位置idx的元素</pre>
+        <code>int lua_toxxx (lua_state *L, int idx);</code>
+    </li>
+    <li>
+        <pre style="word-wrap: break-word;white-space:pre-wrap;"><span style="color:red;">lua_next</span> 返回将栈顶元素作为key查找下一对key-value入栈，入栈前会将栈顶元素弹出。如果栈顶元素为nil，则将第一对key-value入栈
+        </pre>
+        <code>int lua_next (lua_state *L, int idx);</code>
+        <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph='{"highlight":"#0000ff","nav":true,"resize":true,"toolbar":"zoom layers tags lightbox","edit":"_blank","xml":"&lt;mxfile host=\"app.diagrams.net\" modified=\"2022-05-12T17:56:57.329Z\" agent=\"5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36\" etag=\"j31OglzG1yWP7pTDgDUD\" version=\"18.0.3\" type=\"google\"&gt;&lt;diagram id=\"HJl-9YdEfU1DyVbxtj3X\" name=\"Page-1\"&gt;7VzRbqM4FP2aPHYEGJL2cZJ0Z1abGc02lWb3aeWCA546ODJOQ/r1a4MJoQ4tGaWAaqSqwhfjwD3n+pDTq47AbJ1+YXATfaMBIiPHCtIRmI8cZzK+Fr9lYJ8H3ImXB0KGgzxkl4ElfkYqaKnoFgcoqUzklBKON9WgT+MY+bwSg4zRXXXaipLqp25giLTA0odEj/7EAY/y6LUzKeNfEQ6j4pPt8U1+Zg2LyepJkggGdHcUArcjMGOU8vxonc4Qkbkr8pJf90fN2cONMRTzJheQ+7+87zz9ky/Az8/P9+nf7uz+ynPyZZ4g2aonVnfL90UKGN3GAZKrWCMw3UWYo+UG+vLsTmAuYhFfEzGyxaFaDjGO0tobtQ+PL2iD6BpxthdTiguAypiijHOjxrsSAFDMiY6SDywVhAr08LB2mRdxoFJzRprGWpaWHPqPWqoExht5yOGDDE0TDhlXpAYye4KmHOIYMZUunxICNwnOpmf59SNMggXc0y0vFipG0xVOUXCXc1peLei9EIsl6tKVWHypbuZSWHhVLICtY2FbJ7CwnffCYvI2Yysw3Mmim0aU4WeZfKKSdQxNNt7hNYGxqGYYvAhNabZ7yRCnG3VE0IqrwwfKOV2rAVM5sE6iGzC6uYcsRMWUFSZkRgmVhIhpLEmzoTjmWda8qfgReZxZn7yRJ55sJsZ2ORY/cjrjMxonnAliyWURTPgOJbwpA+oZr9OioEFDFoD3IsG1RgK7lgXiWTmG5E7IA4zDrC6PNqxT+5kSE1jidgKm86hABQgrku3/EQ4CFBdAI3b7hHK8G9dsfV3oiB1B5IDzEFKLlYk7ezVIxPPFkIsSEhqSaLAf7vP3mXCjMSHGpN9cgASHAv95PneaiA/EcbjIrxzXkOXixEirMB4hO5lckidNVmuBJ4VwDbrRoW6Mu9YN29ZYUE+DXmwWl90LbOs0Ph9dJWz9e06OUq+xb1ko6shhmlKAQSk6V4oT3/lbVgpXYwHo925x4c0AGKoUnob7D8jgut/Yt60UNeQwTSl0L8oQXxC4vfMFbd0TGmT78rJt19gJfXEGbd0QMt4azEvDPC13dM8nO+w5IdoW8xp2GCbmjm4NDfrRun507hAWqJvqENa9+H14rdBdn0e0H5SiCTdMUwrdGhqUonWl6NwhdHSnyCiHMC8DA5VC7wYb/pbUlBymScVEYwUKQlS4cWLfjGhIY0huy+i02nBZzlnQDHFJml+I872SDrjltEopAQ3b/6Ouzwb/yoHYsdVwnh6fnBfSkt+rvMFasIsXIrplPnpt81a55oXSnPtOwRCBHD9V7+Tye7huGi628L8YpfwkcAv4gEg12UVh+Ug6NiIgywX7kHxWJ9aimnJcUYKfj2q6qrLz1+qtuiGMDk3Fb9fh690/V9YnZ2KpYlTCeqXeZhojoFb/IR/naApdrRLE36WqdI/PEN/9ZT+u63XuuwPdZBvehi//Npxzvr++O9Dts55/eX5/3x0Y2m0FdA9t8FIacsOwF2QwNFv1QD06d92BbqkZ5boDQ7utgO6hDV5KU3KYJhW67zZIRetS0bntDvSmO6Nsd1DTOP3hpUK36obG3KbkME0qjDUIXzbm9sAgdAeDsA3dBj03CN3BIKwpDfO03NUNwuyw59/5WxbzOnYYJubuYBH2QD86twhdwy1C11CL0NUtwke07zn0bSvF4BBmaRgcwh4oRecOoWu4Q+ga6hC6ukM4/DGpKTlMk4objRVmNOYWDRdvNubWvVO005jr6abhx2rMdWtEtKeNuWJY/qvifHr5/57B7f8=&lt;/diagram&gt;&lt;/mxfile&gt;"}'></div>
+        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+    </li>
+</ul>
+
+
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#jekyll" class="page__taxonomy-item" rel="tag">jekyll</a><span class="sep">, </span>
+    
+      <a href="/categories/#lua" class="page__taxonomy-item" rel="tag">Lua</a><span class="sep">, </span>
+    
+      <a href="/categories/#update" class="page__taxonomy-item" rel="tag">update</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2022-05-11T00:00:00+00:00">May 11, 2022</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=C+API%20%2Fjekyll%2Fupdate%2Flua%2FC_API%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fjekyll%2Fupdate%2Flua%2FC_API%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=%2Fjekyll%2Fupdate%2Flua%2FC_API%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0-(Decorator)/" class="pagination--pager" title="装饰 (Decorator)
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You May Also Enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0-(Decorator)/" rel="permalink">装饰 (Decorator)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">动态地给一个对象一些额外的职责，叫增加功能来说，装饰模式比生成子类更为灵活
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5-(Strategy)/" rel="permalink">策略 (Strategy)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">某个类的行为可以运行时动态变化
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AC%A6%E5%8F%B7/" rel="permalink">符号
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B-(Prototype)/" rel="permalink">原型 (Prototype)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">为了实现实例能够自己创建一个和自己完全相同的对象
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 Shokan. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

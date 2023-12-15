@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2023-12-15T13:56:37+00:00</updated><id>/feed.xml</id><title type="html">Shokan Blog</title><subtitle>逸一时，误一世，依旧逸久罢矣零.</subtitle><author><name>Shokan</name></author><entry><title type="html">C API</title><link href="/jekyll/update/lua/C_API/" rel="alternate" type="text/html" title="C API" /><published>2022-05-11T00:00:00+00:00</published><updated>2022-05-11T00:00:00+00:00</updated><id>/jekyll/update/lua/C_API</id><content type="html" xml:base="/jekyll/update/lua/C_API/"><![CDATA[<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<body>
+<script src="https://xshokan.github.io/assets/js/function.js"></script>
+<h2>Lua接口</h2>
+
+<ul>
+    <li>
+        <pre><span style="color:red;">lua_gettop</span> 返回栈中元素个数</pre>
+        <code>int lua_gettop (lua_state *L);</code>
+    </li>
+    <li>
+        <pre><span style="color:red;">lua_toxxx</span> 返回栈中对应位置idx的元素</pre>
+        <code>int lua_toxxx (lua_state *L, int idx);</code>
+    </li>
+    <li>
+        <pre style="word-wrap: break-word;white-space:pre-wrap;"><span style="color:red;">lua_next</span> 返回将栈顶元素作为key查找下一对key-value入栈，入栈前会将栈顶元素弹出。如果栈顶元素为nil，则将第一对key-value入栈
+        </pre>
+        <code>int lua_next (lua_state *L, int idx);</code>
+        <div class="mxgraph" style="max-width:100%;border:1px solid transparent;" data-mxgraph="{&quot;highlight&quot;:&quot;#0000ff&quot;,&quot;nav&quot;:true,&quot;resize&quot;:true,&quot;toolbar&quot;:&quot;zoom layers tags lightbox&quot;,&quot;edit&quot;:&quot;_blank&quot;,&quot;xml&quot;:&quot;&lt;mxfile host=\&quot;app.diagrams.net\&quot; modified=\&quot;2022-05-12T17:56:57.329Z\&quot; agent=\&quot;5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36\&quot; etag=\&quot;j31OglzG1yWP7pTDgDUD\&quot; version=\&quot;18.0.3\&quot; type=\&quot;google\&quot;&gt;&lt;diagram id=\&quot;HJl-9YdEfU1DyVbxtj3X\&quot; name=\&quot;Page-1\&quot;&gt;7VzRbqM4FP2aPHYEGJL2cZJ0Z1abGc02lWb3aeWCA546ODJOQ/r1a4MJoQ4tGaWAaqSqwhfjwD3n+pDTq47AbJ1+YXATfaMBIiPHCtIRmI8cZzK+Fr9lYJ8H3ImXB0KGgzxkl4ElfkYqaKnoFgcoqUzklBKON9WgT+MY+bwSg4zRXXXaipLqp25giLTA0odEj/7EAY/y6LUzKeNfEQ6j4pPt8U1+Zg2LyepJkggGdHcUArcjMGOU8vxonc4Qkbkr8pJf90fN2cONMRTzJheQ+7+87zz9ky/Az8/P9+nf7uz+ynPyZZ4g2aonVnfL90UKGN3GAZKrWCMw3UWYo+UG+vLsTmAuYhFfEzGyxaFaDjGO0tobtQ+PL2iD6BpxthdTiguAypiijHOjxrsSAFDMiY6SDywVhAr08LB2mRdxoFJzRprGWpaWHPqPWqoExht5yOGDDE0TDhlXpAYye4KmHOIYMZUunxICNwnOpmf59SNMggXc0y0vFipG0xVOUXCXc1peLei9EIsl6tKVWHypbuZSWHhVLICtY2FbJ7CwnffCYvI2Yysw3Mmim0aU4WeZfKKSdQxNNt7hNYGxqGYYvAhNabZ7yRCnG3VE0IqrwwfKOV2rAVM5sE6iGzC6uYcsRMWUFSZkRgmVhIhpLEmzoTjmWda8qfgReZxZn7yRJ55sJsZ2ORY/cjrjMxonnAliyWURTPgOJbwpA+oZr9OioEFDFoD3IsG1RgK7lgXiWTmG5E7IA4zDrC6PNqxT+5kSE1jidgKm86hABQgrku3/EQ4CFBdAI3b7hHK8G9dsfV3oiB1B5IDzEFKLlYk7ezVIxPPFkIsSEhqSaLAf7vP3mXCjMSHGpN9cgASHAv95PneaiA/EcbjIrxzXkOXixEirMB4hO5lckidNVmuBJ4VwDbrRoW6Mu9YN29ZYUE+DXmwWl90LbOs0Ph9dJWz9e06OUq+xb1ko6shhmlKAQSk6V4oT3/lbVgpXYwHo925x4c0AGKoUnob7D8jgut/Yt60UNeQwTSl0L8oQXxC4vfMFbd0TGmT78rJt19gJfXEGbd0QMt4azEvDPC13dM8nO+w5IdoW8xp2GCbmjm4NDfrRun507hAWqJvqENa9+H14rdBdn0e0H5SiCTdMUwrdGhqUonWl6NwhdHSnyCiHMC8DA5VC7wYb/pbUlBymScVEYwUKQlS4cWLfjGhIY0huy+i02nBZzlnQDHFJml+I872SDrjltEopAQ3b/6Ouzwb/yoHYsdVwnh6fnBfSkt+rvMFasIsXIrplPnpt81a55oXSnPtOwRCBHD9V7+Tye7huGi628L8YpfwkcAv4gEg12UVh+Ug6NiIgywX7kHxWJ9aimnJcUYKfj2q6qrLz1+qtuiGMDk3Fb9fh690/V9YnZ2KpYlTCeqXeZhojoFb/IR/naApdrRLE36WqdI/PEN/9ZT+u63XuuwPdZBvehi//Npxzvr++O9Dts55/eX5/3x0Y2m0FdA9t8FIacsOwF2QwNFv1QD06d92BbqkZ5boDQ7utgO6hDV5KU3KYJhW67zZIRetS0bntDvSmO6Nsd1DTOP3hpUK36obG3KbkME0qjDUIXzbm9sAgdAeDsA3dBj03CN3BIKwpDfO03NUNwuyw59/5WxbzOnYYJubuYBH2QD86twhdwy1C11CL0NUtwke07zn0bSvF4BBmaRgcwh4oRecOoWu4Q+ga6hC6ukM4/DGpKTlMk4objRVmNOYWDRdvNubWvVO005jr6abhx2rMdWtEtKeNuWJY/qvifHr5/57B7f8=&lt;/diagram&gt;&lt;/mxfile&gt;&quot;}"></div>
+        <script type="text/javascript" src="https://viewer.diagrams.net/js/viewer-static.min.js"></script>
+    </li>
+</ul>
+
+
+</body>
+</html>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="Lua" /><summary type="html"><![CDATA[Lua接口]]></summary></entry><entry><title type="html">Installation</title><link href="/jekyll/update/Jekyll-Installation/" rel="alternate" type="text/html" title="Installation" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/Jekyll-Installation</id><content type="html" xml:base="/jekyll/update/Jekyll-Installation/"><![CDATA[<h2 id="设置github-pages">设置GitHub Pages</h2>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiY2xhc3NEaWFncmFtXG5BLS0-QjFcbkI8fC0tQyIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19" /></p>
+
+<p><img class="plantuml" src="http://www.plantuml.com/plantuml/svg/~h407374617274756d6c0a426f62202d3e20416c696365203a2068656c6c6f20776f726c640a426f62202d3e20416c69636531203a2068656c6c6f20776f726c640a40656e64756d6c" /></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>♜</td>
+      <td> </td>
+      <td>♝</td>
+      <td>♛</td>
+      <td>♚</td>
+      <td>♝</td>
+      <td>♞</td>
+      <td>♜</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+      <td> </td>
+      <td>♟</td>
+      <td>♟</td>
+      <td>♟</td>
+    </tr>
+    <tr>
+      <td>♟</td>
+      <td> </td>
+      <td>♞</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>♗</td>
+      <td> </td>
+      <td> </td>
+      <td>♟</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♙</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>♘</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+      <td> </td>
+      <td>♙</td>
+      <td>♙</td>
+      <td>♙</td>
+    </tr>
+    <tr>
+      <td>♖</td>
+      <td>♘</td>
+      <td>♗</td>
+      <td>♕</td>
+      <td>♔</td>
+      <td> </td>
+      <td> </td>
+      <td>♖</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>$ \int_a^b f(x)\,dx. $</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Stage</th>
+      <th style="text-align: right">Direct Products</th>
+      <th style="text-align: right">ATP Yields</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">Glycolysis</td>
+      <td style="text-align: right">2 ATP              |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">3–5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Pyruvaye oxidation</td>
+      <td style="text-align: right">2 NADH</td>
+      <td style="text-align: right">5 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">Citric acid cycle</td>
+      <td style="text-align: right">2 ATP              |</td>
+      <td style="text-align: right"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">6 NADH</td>
+      <td style="text-align: right">15 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">^^</td>
+      <td style="text-align: right">2 FADH</td>
+      <td style="text-align: right">3 ATP</td>
+    </tr>
+    <tr>
+      <td style="text-align: right">30–32 ATP        ||</td>
+      <td style="text-align: right"> </td>
+      <td style="text-align: right"> </td>
+    </tr>
+  </tbody>
+</table>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[设置GitHub Pages 1 2 3]]></summary></entry><entry><title type="html">单例 (Singleton)</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B-(Singleton)/" rel="alternate" type="text/html" title="单例 (Singleton)" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%20(Singleton)</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B-(Singleton)/"><![CDATA[<p>确保该类存在唯一对象，该类没法被外部实例化（构造函数私有）</p>
+
+<ul>
+  <li>SingleObject：唯一对象实例</li>
+  <li>Singleton()：私有构造函数</li>
+  <li>GetSingleton()：外部获取单例方法</li>
+</ul>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbmNsYXNzRGlhZ3JhbVxuY2xhc3MgU2luZ2xldG9ue1xuLVNpbmdsZXRvbiBTaW5nbGVPYmplY3Rcbi1TaW5nbGV0b24oKVxuK0dldFNpbmdsZXRvbigpXG59IiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifX0" /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Singleton</span><span class="p">{</span>
+<span class="nl">public:</span>
+	<span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">GetSingleton</span><span class="p">(){</span>
+		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">SingleObject</span><span class="p">)</span>
+			<span class="n">SingleObject</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Singeton</span><span class="p">;</span>
+		<span class="k">return</span> <span class="n">SingleObject</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="nl">private:</span>
+	<span class="n">Singleton</span><span class="p">();</span>
+	<span class="k">static</span> <span class="n">Singleton</span><span class="o">*</span> <span class="n">SingleObject</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[确保该类存在唯一对象，该类没法被外部实例化（构造函数私有）]]></summary></entry><entry><title type="html">原则</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%88%99/" rel="alternate" type="text/html" title="原则" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%88%99</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%88%99/"><![CDATA[<h2 id="单一职责">单一职责</h2>
+
+<p>类的职责分离，减少耦合。</p>
+
+<h2 id="开放封闭原则">开放封闭原则</h2>
+
+<p>软件实体（类、模块、函数等等）应该可以扩展，但是不可以修改。</p>
+
+<h2 id="里氏代换原则">里氏代换原则</h2>
+
+<p>子类型必须能够替换掉它们的父类型。</p>
+
+<h2 id="依赖倒转原则">依赖倒转原则</h2>
+
+<ul>
+  <li>高层模块不应该依赖低层模块。两个都应该依赖抽象。</li>
+  <li>抽象不应该依赖细节。细节应该依赖抽象。</li>
+</ul>
+
+<h2 id="迪米特法则">迪米特法则</h2>
+
+<p>如果两个类不必彼此直接通信，那么这两个类就不应当发生直接的相互作用。如果其中一个类需要调用另一个类的某一个方法的话，可以通过第三者转发这个调用。</p>
+
+<h2 id="组合聚合复用">组合/聚合复用</h2>
+
+<p>尽量使用组合/聚合，尽量不要使用类继承。</p>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[单一职责]]></summary></entry><entry><title type="html">原型 (Prototype)</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B-(Prototype)/" rel="alternate" type="text/html" title="原型 (Prototype)" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B%20(Prototype)</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8E%9F%E5%9E%8B-(Prototype)/"><![CDATA[<p>为了实现实例能够自己创建一个和自己完全相同的对象</p>
+
+<ul>
+  <li>Prototype：原型基类</li>
+  <li>ConcreatePrototype1，ConcreatePrototype2：具体实现类</li>
+  <li>Client：调用clone()类</li>
+</ul>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbmNsYXNzRGlhZ3JhbVxuZGlyZWN0aW9uIFRCXG5jbGFzcyBQcm90b3R5cGV7XG4rY2xvbmUoKVxufVxuY2xhc3MgQ29uY3JlYXRlUHJvdG90eXBlMXtcbitjbG9uZSgpXG59XG5jbGFzcyBDb25jcmVhdGVQcm90b3R5cGUye1xuK2Nsb25lKClcbn1cbmNsYXNzIENsaWVudHtcbiUlLVxufVxuUHJvdG90eXBlIC0tPiBDbGllbnQ6IEFzc29jaWF0aW9uXG5Qcm90b3R5cGUgLS18PiBDb25jcmVhdGVQcm90b3R5cGUxIDogSW5oZXJpdGFuY2VcblByb3RvdHlwZSAtLXw-Q29uY3JlYXRlUHJvdG90eXBlMiA6IEluaGVyaXRhbmNlIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifX0" /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Prototype.h</span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Prototype</span> <span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">string</span> <span class="n">Name</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="n">Prototype</span><span class="p">(</span><span class="n">string</span> <span class="n">Name</span><span class="p">)</span><span class="o">:</span><span class="n">Name</span><span class="p">(</span><span class="n">Name</span><span class="p">){};</span>
+
+    <span class="k">virtual</span> <span class="n">Prototype</span><span class="o">*</span> <span class="n">clone</span><span class="p">();</span>
+
+    <span class="kt">void</span> <span class="n">PrintName</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">ConcreatePrototype</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Prototype</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">using</span> <span class="n">Prototype</span><span class="o">::</span><span class="n">Prototype</span><span class="p">;</span>
+
+    <span class="k">virtual</span> <span class="n">Prototype</span> <span class="o">*</span> <span class="n">clone</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Client</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">TestClone</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Prototype.cpp</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+#include</span> <span class="cpf">"Prototype.h"</span><span class="cp">
+</span>
+<span class="n">Prototype</span> <span class="o">*</span><span class="n">Prototype</span><span class="o">::</span><span class="n">clone</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Prototype</span><span class="p">(</span><span class="n">Name</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="n">Prototype</span><span class="o">::</span><span class="n">PrintName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"PrintName "</span> <span class="o">&lt;&lt;</span> <span class="n">Name</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Call</span>
+<span class="kt">void</span> <span class="n">Client</span><span class="o">::</span><span class="n">TestClone</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ConcreatePrototype</span><span class="o">*</span> <span class="n">TestPrototype</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreatePrototype</span><span class="p">(</span><span class="s">"TestPrototype"</span><span class="p">);</span>
+    <span class="n">ConcreatePrototype</span><span class="o">*</span> <span class="n">TestPrototype1</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">ConcreatePrototype</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">TestPrototype</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">());</span>
+    <span class="n">ConcreatePrototype</span><span class="o">*</span> <span class="n">TestPrototype2</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">ConcreatePrototype</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">TestPrototype</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">());</span>
+    <span class="n">ConcreatePrototype</span><span class="o">*</span> <span class="n">TestPrototype3</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">ConcreatePrototype</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">TestPrototype</span><span class="o">-&gt;</span><span class="n">clone</span><span class="p">());</span>
+    <span class="n">TestPrototype1</span><span class="o">-&gt;</span><span class="n">PrintName</span><span class="p">();</span>
+    <span class="n">TestPrototype2</span><span class="o">-&gt;</span><span class="n">PrintName</span><span class="p">();</span>
+    <span class="n">TestPrototype3</span><span class="o">-&gt;</span><span class="n">PrintName</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="n">Prototype</span> <span class="o">*</span><span class="n">ConcreatePrototype</span><span class="o">::</span><span class="n">clone</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">ConcreatePrototype</span><span class="p">(</span><span class="s">"ConcreatePrototype"</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[为了实现实例能够自己创建一个和自己完全相同的对象]]></summary></entry><entry><title type="html">符号</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AC%A6%E5%8F%B7/" rel="alternate" type="text/html" title="符号" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AC%A6%E5%8F%B7</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AC%A6%E5%8F%B7/"><![CDATA[<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbmNsYXNzRGlhZ3JhbVxuY2xhc3MgQ2xhc3Mze1xuK0Z1bmMoQmFzZSogb2JqKVxufVxuY2xhc3MgQ2xhc3M0e1xuK0Jhc2U6IEJhc2VPYmpcbn1cbmNsYXNzIENsYXNzNXtcbitCYXNlOiBCYXNlT2JqXG4rU2V0QmFzZU9iaihCYXNlKiBvYmopXG59XG5jbGFzcyBDbGFzczZ7XG4rQmFzZTogQmFzZU9ialxuK0NyZWF0ZSgpXG59XG5CYXNlIDx8LS0gQ2xhc3MxOiBJbmhlcml0YW5jZSDnu6fmib9cbkJhc2UgPHwuLiBDbGFzczI6IEltcGxlbWVudGF0aW9uIOWunueOsFxuQmFzZSA8Li4gQ2xhc3MzOiBEZXBlbmRlbmN577yM5L6d6LWWXG5CYXNlIDwtLSBDbGFzczQ6IEFzc29jaWF0aW9u77yM5YWz6IGUXG5CYXNlIDwtLW8gQ2xhc3M1OiBBZ2dyZWdhdGlvbu-8jOiBmuWQiFxuQmFzZSA8LS0qIENsYXNzNjogQ29tcG9zaXRpb27vvIznu4TlkIgiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9fQ" /></p>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[]]></summary></entry><entry><title type="html">策略 (Strategy)</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5-(Strategy)/" rel="alternate" type="text/html" title="策略 (Strategy)" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%20(Strategy)</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5-(Strategy)/"><![CDATA[<p>某个类的行为可以运行时动态变化</p>
+
+<ul>
+  <li>BaseStrategy：策略基类
+    <ul>
+      <li>Algorithm1、Algorithm2：策略行为</li>
+    </ul>
+  </li>
+  <li>Strategy1、Strategy2、Strategy3：具体策略</li>
+  <li>Context：使用策略类
+    <ul>
+      <li>SetStrategy：设置策略实例</li>
+      <li>ExecStrategyAlgo1、ExecStrategyAlgo2：执行策略行为</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbmNsYXNzRGlhZ3JhbVxuY2xhc3MgQmFzZVN0cmF0ZWd5e1xuK0FsZ29yaXRobTEoKVxuK0FsZ29yaXRobTIoKVxufVxuY2xhc3MgU3RyYXRlZ3kxe1xuK0FsZ29yaXRobTEoKVxuK0FsZ29yaXRobTIoKVxufVxuY2xhc3MgU3RyYXRlZ3kye1xuK0FsZ29yaXRobTEoKVxuK0FsZ29yaXRobTIoKVxufVxuY2xhc3MgU3RyYXRlZ3kze1xuK0FsZ29yaXRobTEoKVxuK0FsZ29yaXRobTIoKVxufVxuY2xhc3MgQ29udGV4dHtcbi1CYXNlU3RyYXRlZ3kgU3RyYXRlZ3lcbitTZXRTdHJhdGVneSgpXG4rRXhlY1N0cmF0ZWd5QWxnbzEoKVxuK0V4ZWNTdHJhdGVneUFsZ28yKClcbn1cbiUlLVxuQmFzZVN0cmF0ZWd5IDx8LS0gU3RyYXRlZ3kxIDogSW5oZXJpdGFuY2VcbkJhc2VTdHJhdGVneSA8fC0tIFN0cmF0ZWd5MiA6IEluaGVyaXRhbmNlXG5CYXNlU3RyYXRlZ3kgPHwtLSBTdHJhdGVneTMgOiBJbmhlcml0YW5jZVxuQmFzZVN0cmF0ZWd5IDwtLW8gQ29udGV4dCA6IEFnZ3JlZ2F0aW9uIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifX0" /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">BaseStrategy</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm1</span><span class="p">(){}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm2</span><span class="p">(){}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Strategy1</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BaseStrategy</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm1</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Strategy1 Algorithm1"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm2</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Strategy1 Algorithm2"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Strategy2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">BaseStrategy</span><span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm1</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Strategy2 Algorithm1"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">Algorithm2</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Strategy2 Algorithm2"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Context</span><span class="p">{</span>
+<span class="nl">private:</span>
+    <span class="n">BaseStrategy</span><span class="o">*</span> <span class="n">Strategy</span><span class="p">;</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">SetStrategy</span><span class="p">(</span><span class="n">BaseStrategy</span><span class="o">*</span> <span class="n">TempStrategy</span><span class="p">){</span>
+        <span class="n">Strategy</span> <span class="o">=</span> <span class="n">TempStrategy</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">ExecStrategyAlgo1</span><span class="p">(){</span>
+        <span class="n">Strategy</span><span class="o">-&gt;</span><span class="n">Algorithm1</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">ExecStrategyAlgo2</span><span class="p">(){</span>
+        <span class="n">Strategy</span><span class="o">-&gt;</span><span class="n">Algorithm2</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">Context</span><span class="o">*</span> <span class="n">ContextObj</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Context</span><span class="p">;</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">SetStrategy</span><span class="p">(</span><span class="k">new</span> <span class="n">Strategy1</span><span class="p">());</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">ExecStrategyAlgo1</span><span class="p">();</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">ExecStrategyAlgo2</span><span class="p">();</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">SetStrategy</span><span class="p">(</span><span class="k">new</span> <span class="n">Strategy2</span><span class="p">());</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">ExecStrategyAlgo1</span><span class="p">();</span>
+    <span class="n">ContextObj</span><span class="o">-&gt;</span><span class="n">ExecStrategyAlgo2</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Output</span>
+<span class="n">Strategy1</span> <span class="n">Algorithm1</span>
+<span class="n">Strategy1</span> <span class="n">Algorithm2</span>
+<span class="n">Strategy2</span> <span class="n">Algorithm1</span>
+<span class="n">Strategy2</span> <span class="n">Algorithm2</span>
+</code></pre></div></div>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[某个类的行为可以运行时动态变化]]></summary></entry><entry><title type="html">装饰 (Decorator)</title><link href="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0-(Decorator)/" rel="alternate" type="text/html" title="装饰 (Decorator)" /><published>2022-05-08T00:00:00+00:00</published><updated>2022-05-08T00:00:00+00:00</updated><id>/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0%20(Decorator)</id><content type="html" xml:base="/jekyll/update/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E8%A3%85%E9%A5%B0-(Decorator)/"><![CDATA[<p>动态地给一个对象一些额外的职责，叫增加功能来说，装饰模式比生成子类更为灵活</p>
+
+<ul>
+  <li>Component：被装饰的类
+    <ul>
+      <li>Exec()：执行装饰对象链，每个对象对其他对象的顺序不关心</li>
+    </ul>
+  </li>
+  <li>Decorator：装饰基类
+    <ul>
+      <li>ComponentObj：存储装饰对象链的上一个对象</li>
+      <li>SetDecorator(Component* Obj)：设置上一个对象</li>
+    </ul>
+  </li>
+  <li>ConcreteDecoratorA、ConcreteDecoratorA：装饰类的具体实现类</li>
+  <li>AddBehavior1、AddBehavior2：每个具体实现类特征</li>
+</ul>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbmNsYXNzRGlhZ3JhbVxuY2xhc3MgQ29tcG9uZW50e1xuK0V4ZWMoKVxufVxuY2xhc3MgQ29uY3JldGVDb21wb25lbnR7XG4rRXhlYygpXG59XG5jbGFzcyBEZWNvcmF0b3J7XG4jQ29tcG9uZW50KiBDb21wb25lbnRPYmpcbitTZXREZWNvcmF0b3IoQ29tcG9uZW50KiBPYmopXG4rRXhlYygpXG59XG5jbGFzcyBDb25jcmV0ZURlY29yYXRvckF7XG4rRXhlYygpXG4tQWRkQmVoYXZpb3JBKClcbn1cbmNsYXNzIENvbmNyZXRlRGVjb3JhdG9yQntcbitFeGVjKClcbi1BZGRCZWhhdmlvckIoKVxufVxuQ29tcG9uZW50PHwtLSBDb25jcmV0ZUNvbXBvbmVudDogSW5oZXJpdGFuY2UsIERpc3BlbnNhYmxlXG5Db21wb25lbnQgPHwtLSBEZWNvcmF0b3IgOiBJbmhlcml0YW5jZVxuQ29tcG9uZW50PC0tbyBEZWNvcmF0b3IgOiBBZ2dyZWdhdGlvblxuRGVjb3JhdG9yIDx8LS0gQ29uY3JldGVEZWNvcmF0b3JBOiBJbmhlcml0YW5jZVxuRGVjb3JhdG9yIDx8LS0gQ29uY3JldGVEZWNvcmF0b3JCOiBJbmhlcml0YW5jZSIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In19" /></p>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">class</span> <span class="nc">Component</span><span class="p">{</span>
+<span class="nl">public:</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="n">Exec</span><span class="p">(){};</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Decorator</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Component</span><span class="p">{</span>
+<span class="nl">protected:</span>
+<span class="n">Component</span><span class="o">*</span> <span class="n">ComponentObj</span><span class="p">;</span>
+<span class="nl">public:</span>
+<span class="kt">void</span> <span class="n">SetDecorator</span><span class="p">(</span><span class="n">Component</span><span class="o">*</span> <span class="n">Obj</span><span class="p">){</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ComponentObj</span><span class="p">){</span>
+<span class="n">ComponentObj</span> <span class="o">=</span> <span class="n">Obj</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">}</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="n">Exec</span><span class="p">()</span> <span class="k">override</span><span class="p">{}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">ConcreteDecoratorA</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Decorator</span><span class="p">{</span>
+<span class="nl">private:</span>
+<span class="kt">void</span> <span class="n">AddBehaviorA</span><span class="p">(){</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"AddBehaviorA"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nl">public:</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="n">Exec</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+<span class="n">ComponentObj</span><span class="o">-&gt;</span><span class="n">Exec</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Exec ConcreteDecoratorA"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">AddBehaviorA</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">ConcreteDecoratorB</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Decorator</span><span class="p">{</span>
+<span class="nl">private:</span>
+<span class="kt">void</span> <span class="n">AddBehaviorB</span><span class="p">(){</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"AddBehaviorB"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nl">public:</span>
+<span class="k">virtual</span> <span class="kt">void</span> <span class="n">Exec</span><span class="p">()</span> <span class="k">override</span><span class="p">{</span>
+<span class="n">ComponentObj</span><span class="o">-&gt;</span><span class="n">Exec</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Exec ConcreteDecoratorB"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">AddBehaviorB</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+<span class="n">Component</span><span class="o">*</span> <span class="n">Target</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Component</span><span class="p">();</span>
+<span class="n">ConcreteDecoratorA</span><span class="o">*</span> <span class="n">DtA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteDecoratorA</span><span class="p">();</span>
+<span class="n">ConcreteDecoratorB</span><span class="o">*</span> <span class="n">DtB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ConcreteDecoratorB</span><span class="p">();</span>
+
+<span class="n">DtA</span><span class="o">-&gt;</span><span class="n">SetDecorator</span><span class="p">(</span><span class="n">Target</span><span class="p">);</span>
+<span class="n">DtB</span><span class="o">-&gt;</span><span class="n">SetDecorator</span><span class="p">(</span><span class="n">DtA</span><span class="p">);</span>
+<span class="n">DtB</span><span class="o">-&gt;</span><span class="n">Exec</span><span class="p">();</span>
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-c++ highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Output</span>
+<span class="n">Exec</span> <span class="n">ConcreteDecoratorA</span>
+<span class="n">AddBehaviorA</span>
+<span class="n">Exec</span> <span class="n">ConcreteDecoratorB</span>
+<span class="n">AddBehaviorB</span>
+</code></pre></div></div>
+
+<p><img class="mermaid" src="https://mermaid.ink/svg/eyJjb2RlIjoiJSV7aW5pdDogeyd0aGVtZSc6ICdkYXJrJ319JSVcbiUlIOWvueixoemTvlxuZmxvd2NoYXJ0IExSXG5UYXJnZXQgLS0-IENvbmNyZXRlRGVjb3JhdG9yQSAtLT4gQ29uY3JldGVEZWNvcmF0b3JCIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifX0" /></p>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><category term="设计模式" /><summary type="html"><![CDATA[动态地给一个对象一些额外的职责，叫增加功能来说，装饰模式比生成子类更为灵活]]></summary></entry><entry><title type="html">Welcome to Jekyll 114514 1919810!</title><link href="/jekyll/update/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll 114514 1919810!" /><published>2022-05-06T07:39:58+00:00</published><updated>2022-05-06T07:39:58+00:00</updated><id>/jekyll/update/welcome-to-jekyll</id><content type="html" xml:base="/jekyll/update/welcome-to-jekyll/"><![CDATA[<p>You’ll find this post in your <code class="language-plaintext highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="language-plaintext highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+
+<p>Jekyll requires blog post files to be named according to the following format:</p>
+
+<p><code class="language-plaintext highlighter-rouge">YEAR-MONTH-DAY-title.MARKUP</code></p>
+
+<p>Where <code class="language-plaintext highlighter-rouge">YEAR</code> is a four-digit number, <code class="language-plaintext highlighter-rouge">MONTH</code> and <code class="language-plaintext highlighter-rouge">DAY</code> are both two-digit numbers, and <code class="language-plaintext highlighter-rouge">MARKUP</code> is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+
+<p>Jekyll also offers powerful support for code snippets:</p>
+
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
+  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">end</span>
+<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
+<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
+
+<p>Check out the <a href="https://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.]]></summary></entry><entry><title type="html">Learning Notes</title><link href="/jekyll/update/Test/" rel="alternate" type="text/html" title="Learning Notes" /><published>2022-05-06T00:00:00+00:00</published><updated>2022-05-06T00:00:00+00:00</updated><id>/jekyll/update/Test</id><content type="html" xml:base="/jekyll/update/Test/"><![CDATA[]]></content><author><name>Shokan</name></author><category term="jekyll" /><category term="update" /><summary type="html"><![CDATA[]]></summary></entry></feed>
